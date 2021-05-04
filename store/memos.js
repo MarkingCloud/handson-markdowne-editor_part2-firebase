@@ -66,48 +66,48 @@ export const actions = {
   },
   // FireStoreからデータを取得してリストを更新する
   async readDB(context) {
-    // ローカルの情報が最新の場合Firestoreにアクセスしない
-    const isListLatest = await context.dispatch('checkListLatest')
-    if (isListLatest === true) return
-    // データ取得
-    await context.commit('reset')
-    const db = this.$fire.firestore.collection('markdowns').orderBy('timestamp', 'desc')
-    try {
-      const snapshot = await db.get()
-      snapshot.forEach((doc) => {
-        context.commit('add', { id: doc.id, data: doc.data() })
-      })
-    } catch (e) {
-      alert(e)
-    }
+    // // ローカルの情報が最新の場合Firestoreにアクセスしない
+    // const isListLatest = await context.dispatch('checkListLatest')
+    // if (isListLatest === true) return
+    // // データ取得
+    // await context.commit('reset')
+    // const db = this.$fire.firestore.collection('markdowns').orderBy('timestamp', 'desc')
+    // try {
+    //   const snapshot = await db.get()
+    //   snapshot.forEach((doc) => {
+    //     context.commit('add', { id: doc.id, data: doc.data() })
+    //   })
+    // } catch (e) {
+    //   alert(e)
+    // }
   },
   // FireStoreの変更を検知してリストを更新する
   listenDB(context) {
-    const db = this.$fire.firestore.collection('markdowns').orderBy('timestamp', 'desc').limit(1)
-    try {
-      db.onSnapshot(async (snapshot) => {
-        await snapshot.forEach((doc) => {
-          context.commit('save', { id: doc.id, data: doc.data() })
-        })
-        context.commit('sort')
-      })
-    } catch (e) {
-      alert(e)
-    }
+    // const db = this.$fire.firestore.collection('markdowns').orderBy('timestamp', 'desc').limit(1)
+    // try {
+    //   db.onSnapshot(async (snapshot) => {
+    //     await snapshot.forEach((doc) => {
+    //       context.commit('save', { id: doc.id, data: doc.data() })
+    //     })
+    //     context.commit('sort')
+    //   })
+    // } catch (e) {
+    //   alert(e)
+    // }
   },
   // FireStoreに要素を保存する
   async saveDB(context, { saveId, saveData }) {
-    await context.commit('save', { id: saveId, data: saveData })
-    const db = this.$fire.firestore.collection('markdowns').doc(saveId)
-    try {
-      db.set({
-        text: saveData.text,
-        title: saveData.title,
-        timestamp: saveData.timestamp,
-      })
-    } catch (e) {
-      alert(e)
-    }
+    // await context.commit('save', { id: saveId, data: saveData })
+    // const db = this.$fire.firestore.collection('markdowns').doc(saveId)
+    // try {
+    //   db.set({
+    //     text: saveData.text,
+    //     title: saveData.title,
+    //     timestamp: saveData.timestamp,
+    //   })
+    // } catch (e) {
+    //   alert(e)
+    // }
   },
   // FireStoreの要素を削除する
   async removeDB(context, removeId) {
