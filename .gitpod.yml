@@ -1,2 +1,2 @@
 tasks:
-  - init: npm install
+  - init: nmv install v14.15.0 & npm install & npm install -g firebase-tools
