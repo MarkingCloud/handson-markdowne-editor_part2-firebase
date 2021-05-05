@@ -11,6 +11,7 @@
     "lint": "npm run lint:js"
   },
   "dependencies": {
+    "@firebase/util": "^1.0.0",
     "@nuxtjs/dotenv": "^1.4.1",
     "@nuxtjs/firebase": "^7.5.0",
     "@toast-ui/vue-editor": "^2.5.1",
