@@ -47,7 +47,7 @@ export default {
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
     '@nuxtjs/dotenv',
-    '@nuxtjs/firebase', //firebase
+    // '@nuxtjs/firebase', //firebase
   ],
 
   // Vuetify module configuration: https://go.nuxtjs.dev/config-vuetify
@@ -72,23 +72,22 @@ export default {
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {},
 
-  generate: {
-    dir: 'public', // デフォルトは`dist`
-  },
+  // generate: {
+  //   dir: 'public', // デフォルトは`dist`
+  // },
 
-  firebase: {
-    config: {
-      apiKey: process.env.API_KEY,
-      authDomain: process.env.AUTH_DOMAIN,
-      projectId: process.env.PROJECT_ID,
-      storageBucket: process.env.STORAGE_BUCKET,
-      messagingSenderId: process.env.MESSAGING_SENDER_ID,
-      appId: process.env.APP_ID,
-      measurementId: process.env.MESSAGING_SENDER_ID,
-    },
-    services: {
-      // auth: true // Just as example. Can be any other service.
-      firestore: true,
-    },
-  },
+  // firebase: {
+  //   config: {
+  //     apiKey: process.env.API_KEY,
+  //     authDomain: process.env.AUTH_DOMAIN,
+  //     projectId: process.env.PROJECT_ID,
+  //     storageBucket: process.env.STORAGE_BUCKET,
+  //     messagingSenderId: process.env.MESSAGING_SENDER_ID,
+  //     appId: process.env.APP_ID,
+  //     measurementId: process.env.MESSAGING_SENDER_ID,
+  //   },
+  //   services: {
+  //     firestore: true,
+  //   },
+  // },
 }
