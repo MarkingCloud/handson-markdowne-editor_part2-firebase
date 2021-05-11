@@ -1,10 +1,10 @@
-# 7. FireStore を使ってみる
+# 7. Firestore を使ってみる
 
-Firebase の DB である Cloud FireStore を利用してみましょう。
+Firebase の DB である Cloud Firestore を利用してみましょう。
 
 <img :src="$withBase('/firestore2.png')">
 
-## 1. Cloud FireStore とは
+## 1. Cloud Firestore とは
 
 Firebase が標準で用意している **NoSQL** の DB です。
 
@@ -25,14 +25,14 @@ Oracle Database、MySQL などはこれを操作するため **RDBMS** と呼ば
 | データ操作                     | SQL 文を利用                           | DB ごとに独自実装、共通言語は無い        |
 | データの精度                   | 高い                                   | 低い                                     |
 | 分散性<br>(多拠点展開への対応) | 低い                                   | 高い                                     |
-| サービス例                     | Oracle Database<br>MySQL<br>PostgreSQL | Cloud FireStore<br>MongoDB<br>Redis      |
+| サービス例                     | Oracle Database<br>MySQL<br>PostgreSQL | Cloud Firestore<br>MongoDB<br>Redis      |
 
-Cloud FireStore はドキュメント指向の NoSQL になります。  
+Cloud Firestore はドキュメント指向の NoSQL になります。  
 **コレクション**と**ドキュメント**ごとに**オブジェクト**でデータを管理することができます。
 
-## 2. FireStore に書き込みを行う
+## 2. Firestore に書き込みを行う
 
-FireStore にデータを書き込む処理を実装してみましょう。
+Firestore にデータを書き込む処理を実装してみましょう。
 
 次の操作を行ってください。
 
@@ -44,7 +44,7 @@ FireStore にデータを書き込む処理を実装してみましょう。
 ```js{5-15}
 // 非同期処理を実行する
 export const actions = {
-  // FireStoreに要素を保存する
+  // Firestoreに要素を保存する
   async saveDB(context, { saveId, saveData }) {
     await context.commit('save', { id: saveId, data: saveData })
     const db = this.$fire.firestore.collection('markdowns').doc(saveId)
@@ -78,9 +78,9 @@ MarkdownEditor ページの SAVE をクリックすることでデータが格�
 
 <img :src="$withBase('/save.gif')">
 
-## 3. FireStore からデータを読み込む
+## 3. Firestore からデータを読み込む
 
-FireStore からデータを読み込んでみましょう。
+Firestore からデータを読み込んでみましょう。
 
 次の操作を行ってください。
 
@@ -93,7 +93,7 @@ FireStore からデータを読み込んでみましょう。
 ```js{5-18,22-32}
 // 非同期処理を実行する
 export const actions = {
-  // FireStoreからデータを取得してリストを更新する
+  // Firestoreからデータを取得してリストを更新する
   async readDB(context) {
     // ローカルの情報が最新の場合Firestoreにアクセスしない
     const isListLatest = await context.dispatch('checkListLatest')
@@ -110,7 +110,7 @@ export const actions = {
       alert(e)
     }
   },
-  // FireStoreの変更を検知してリストを更新する
+  // Firestoreの変更を検知してリストを更新する
   listenDB(context) {
     const db = this.$fire.firestore.collection('markdowns').orderBy('timestamp', 'desc').limit(1)
     try {
@@ -130,9 +130,9 @@ export const actions = {
 ローカルの Nuxt アプリを更新して、データが取得できていれば成功です。  
 `db.onSnapshot`というメソッドを利用して、リアルタイムにデータを取得するようにしています。
 
-## 4. FireStore を上手に使うための工夫
+## 4. Firestore を上手に使うための工夫
 
-FireStore の料金体系は次のようになっています。
+Firestore の料金体系は次のようになっています。
 
 [https://cloud.google.com/firestore/pricing](https://cloud.google.com/firestore/pricing)
 
@@ -144,9 +144,9 @@ FireStore の料金体系は次のようになっています。
 > - データベースにより使用されるストレージの容量（メタデータとインデックスのオーバーヘッドを含む）。
 > - ネットワーク帯域幅の使用量。
 
-そのため FireStore と**なるべく通信させないような工夫**が必要になります。
+そのため Firestore と**なるべく通信させないような工夫**が必要になります。
 
-今回のサービスでは SessionStrage のデータと FireStore の最新データの比較し、  
+今回のサービスでは SessionStrage のデータと Firestore の最新データの比較し、  
 無駄に全データ取得の処理が走らないようにしています。
 
 _store/memos.js_
@@ -169,7 +169,7 @@ export const actions = {
     }
   },
 
-  // FireStoreからデータを取得してリストを更新する
+  // Firestoreからデータを取得してリストを更新する
   async readDB(context) {
     // ローカルの情報が最新の場合Firestoreにアクセスしない
     const isListLatest = await context.dispatch('checkListLatest')
@@ -196,4 +196,4 @@ npm run generate
 firebase deploy
 ```
 
-これで FireStore と連携したサービスを全国に公開することができました！
+これで Firestore と連携したサービスを全国に公開することができました！

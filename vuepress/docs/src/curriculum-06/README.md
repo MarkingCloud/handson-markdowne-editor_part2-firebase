@@ -1,6 +1,6 @@
 # 6. nuxt/firebase を導入する
 
-FireStore(Firebase の持つ DB)を利用するために SDK をインストールする必要があります。  
+Firestore(Firebase の持つ DB)を利用するために SDK をインストールする必要があります。  
 [nuxt/fierbase](https://firebase.nuxtjs.org/)は nuxt に Firebase SDK を簡単に統合できるモジュールです。
 
 <img :src="$withBase('/nuxtfirebase.png')">

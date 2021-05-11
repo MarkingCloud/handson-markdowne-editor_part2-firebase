@@ -64,7 +64,7 @@ module.exports = {
         collapsable: false
       },
       {
-        title: "7. FireStore を使ってみる",
+        title: "7. Firestore を使ってみる",
         path: "/curriculum-07/",
         collapsable: false
       },
