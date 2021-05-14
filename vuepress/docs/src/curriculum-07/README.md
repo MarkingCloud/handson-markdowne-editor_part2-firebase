@@ -196,4 +196,4 @@ npm run generate
 firebase deploy
 ```
 
-これで Firestore と連携したサービスを全国に公開することができました！
+これで Firestore と連携したサービスを公開することができました！
