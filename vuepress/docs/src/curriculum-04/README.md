@@ -4,7 +4,9 @@
 
 Gitpod を開いてコードをクローンしましょう。
 
-[**Gitpod でリポジトリを開く**](http://gitpod.io/#https://github.com/MarkingCloud/handson-markdowne-editor_part2-firebase)
+[**Gitpod に登録する**](https://gitpod.io/login)
+
+[**Gitpod で今回のリポジトリを開く**](http://gitpod.io/#https://github.com/MarkingCloud/handson-markdowne-editor_part2-firebase)
 
 <img :src="$withBase('/gitpod.png')">
 
@@ -14,6 +16,16 @@ Gitpod を開いてコードをクローンしましょう。
 - リポジトリ URL の頭に`gitpod.io/#`を付けるだけで簡単に開発環境を構築
 - 50 時間/月まで無料で利用可能
 - [https://www.gitpod.io/](https://www.gitpod.io/)
+
+:::
+
+::: tip テーマをダークモードに変更
+
+テーマをダークモードに変更したい場合は次の手順を実行してください。
+
+- 歯車マーク > Color Theme > Dark (Visual Studio) を選択
+
+<img :src="$withBase('/dark.png')">
 
 :::
 
@@ -54,6 +66,8 @@ Firebase のプロジェクトを作成しましょう。
 - Google アナリティクスは無効にして「プロジェクトを作成」を選択。
 
 <img :src="$withBase('/project.png')">
+
+## 3. Firebase プロジェクトを作成する
 
 作成したプロジェクトを Gitpod に紐づけます。
 
@@ -130,7 +144,7 @@ $ firebase projects:list
 └─────────────────────────────┴────────────────────────────────┴────────────────┴──────────────────────┘
 ```
 
-## 3. アプリを作成する
+## 4. アプリを作成する
 
 Firebase ではアプリという単位でリソースを管理します。
 
@@ -145,3 +159,15 @@ Firebase ではアプリという単位でリソースを管理します。
 <img :src="$withBase('/webapp.png')">
 
 ここまでで準備は完了です。
+
+## 5. Firestore を作成する
+
+コンソールから Firestore を有効化します。
+
+次の操作を行ってください。
+
+- Firestore > データベースの作成　を選択
+- テストモードで開始する　を選択
+- asia-northeast1 > 有効にする　を選択
+
+<img :src="$withBase('/storeconsole.png')">

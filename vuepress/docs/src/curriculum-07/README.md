@@ -151,24 +151,7 @@ Firestore の料金体系は次のようになっています。
 
 _store/memos.js_
 
-```js{8,20-22}
-// 非同期処理を実行する
-export const actions = {
-  // ローカルの情報が最新かチェックする
-  async checkListLatest() {
-    // セッションストレージの最新更新時間を取得
-    (略)
-    // Firestoreの最新更新時間を取得
-    const db = this.$fire.firestore.collection('markdowns').orderBy('timestamp', 'desc').limit(1)
-    (略)
-    // ローカルとDBの最新更新時間比較
-    if (new Date(localUpdateTime) < new Date(dbUpdateTime)) {
-      return false
-    } else {
-      return true
-    }
-  },
-
+```js{3-5}
   // Firestoreからデータを取得してリストを更新する
   async readDB(context) {
     // ローカルの情報が最新の場合Firestoreにアクセスしない
@@ -177,8 +160,42 @@ export const actions = {
     // データ取得
     (略)
   },
-}
 ```
+
+::: details checkListLatest の詳細
+
+```js
+// ローカルの情報が最新かチェックする
+  async checkListLatest() {
+    // セッションストレージの最新更新時間を取得
+    const localList = await JSON.parse(sessionStorage.getItem('markdownEditor')).memos.list
+    if (!localList) return
+    const localUpdateItem = await localList.reduce((a, b) =>
+      new Date(a.data.timestamp) > new Date(b.data.timestamp) ? a : b
+    )
+    const localUpdateTime = localUpdateItem.data.timestamp
+    // Firestoreの最新更新時間を取得
+    const db = this.$fire.firestore.collection('markdowns').orderBy('timestamp', 'desc').limit(1)
+    let dbUpdateTime = new Date()
+    try {
+      const snapshot = await db.get()
+      await snapshot.forEach((doc) => {
+        dbUpdateTime = doc.data().timestamp
+      })
+    } catch (e) {
+      alert(e)
+      return
+    }
+    // ローカルとDBの最新更新時間比較
+    if (new Date(localUpdateTime) < new Date(dbUpdateTime)) {
+      return false
+    } else {
+      return true
+    }
+  },
+```
+
+:::
 
 ## 5. 完成したサービスをデプロイする
 

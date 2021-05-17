@@ -79,10 +79,10 @@ npm run build
 npm run generate
 ```
 
-::: tip データ収集への協力するか聞かれますが、No で大丈夫です。
+::: tip データ収集への協力するか聞かれますが、Yes/No で大丈夫です。
 
 ```shell
-? Are you interested in participating? 'No'
+? Are you interested in participating? 'Yes'
 ```
 
 :::
